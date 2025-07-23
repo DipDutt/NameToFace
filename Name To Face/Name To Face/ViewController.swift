@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UICollectionViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class ViewController: UICollectionViewController {
     
     // MARK: - Properties
     
@@ -20,7 +20,11 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
        
     }
-    
+}
+
+ // MARK: - Create Extension Of ViewController
+
+extension ViewController:UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     // MARK: -  This Section For Data Source.
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return people.count
@@ -85,6 +89,4 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
-    
 }
-
