@@ -75,8 +75,8 @@ extension ViewController:UIImagePickerControllerDelegate & UINavigationControlle
         guard let image = info[.editedImage] as? UIImage else { return } // try to get the edited image.
         let imageName = UUID().uuidString // try create unique id for each image so
         let imagePath = getDocumentsDirectory().appendingPathComponent(imageName) // Appends the unique image name to that path — this is where the image will be saved.
-        if let jpegData = image.jpegData(compressionQuality: 0.8) {
-            try? jpegData.write(to: imagePath)
+        if let jepeg = image.jpegData(compressionQuality: 0.8) {
+            try? jepeg.write(to: imagePath)
         }
         let person = Person(name: "unknown", image: imageName)
         people.append(person)
