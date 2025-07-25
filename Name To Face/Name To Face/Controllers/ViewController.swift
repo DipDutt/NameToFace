@@ -18,11 +18,11 @@ class ViewController: UICollectionViewController {
         super.viewDidLoad()
         navigationItem.title = "Name To Face"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
-       
+        
     }
 }
 
- // MARK: - Create Extension Of ViewController
+// MARK: - Create Extension Of ViewController
 
 extension ViewController:UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     // MARK: -  This Section For Data Source.
@@ -34,7 +34,7 @@ extension ViewController:UIImagePickerControllerDelegate & UINavigationControlle
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "person", for: indexPath) as! PersonCollectionViewCell
         let people = people[indexPath.item]
         cell.textView.text = people.name
-        let path = getDocumentsDirectory().appendingPathComponent(people.image)
+        let path = Directory.getDocumentsDirectory().appendingPathComponent(people.image)
         cell.imageView.image = UIImage(contentsOfFile: path.path)
         cell.imageView.layer.borderColor = UIColor(white: 0, alpha: 0.3).cgColor
         cell.imageView.layer.borderWidth = 2
@@ -74,7 +74,7 @@ extension ViewController:UIImagePickerControllerDelegate & UINavigationControlle
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else { return } // try to get the edited image.
         let imageName = UUID().uuidString // try create unique id for each image so
-        let imagePath = getDocumentsDirectory().appendingPathComponent(imageName) // Appends the unique image name to that path — this is where the image will be saved.
+        let imagePath =  Directory.getDocumentsDirectory().appendingPathComponent(imageName) // Appends the unique image name to that path — this is where the image will be saved.
         if let jepeg = image.jpegData(compressionQuality: 0.8) {
             try? jepeg.write(to: imagePath)
         }
@@ -84,9 +84,7 @@ extension ViewController:UIImagePickerControllerDelegate & UINavigationControlle
         dismiss(animated: true) // dismiss the picker.
     }
     
-    // MARK: -  Create getDocumentDirectory method to get the file path to the app's "Documents" directory
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
+   
+    
 }
+
