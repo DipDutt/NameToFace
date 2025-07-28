@@ -56,6 +56,7 @@ extension ViewController:UIImagePickerControllerDelegate & UINavigationControlle
         ac.addAction(UIAlertAction(title: "OK", style: .default) { [weak self, weak ac] _ in
             guard let newName = ac?.textFields?[0].text else { return }
             people.name = newName
+            self?.savaData()
             self?.collectionView.reloadData()
         })
         present(ac, animated: true)
