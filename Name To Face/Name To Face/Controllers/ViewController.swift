@@ -83,8 +83,22 @@ extension ViewController:UIImagePickerControllerDelegate & UINavigationControlle
         collectionView.reloadData()
         dismiss(animated: true) // dismiss the picker.
     }
-    
-   
+     // MARK: -  Create savaData method for save customData.
+   func savaData() {
+        let encoder = JSONEncoder()
+        if let data = try? encoder.encode(people) {
+            UserDefaults.standard.set(data, forKey: "people")
+        }
+    }
+    // MARK: -  Create loadData method for show customData.
+    func loadData() {
+        if let data = UserDefaults.standard.data(forKey: "people") {
+            let decoder = JSONDecoder()
+            if let loadedPeople = try? decoder.decode([Person].self, from: data) {
+                people = loadedPeople
+            }
+        }
+    }
     
 }
 
