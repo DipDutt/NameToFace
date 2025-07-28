@@ -80,6 +80,7 @@ extension ViewController:UIImagePickerControllerDelegate & UINavigationControlle
         }
         let person = Person(name: "unknown", image: imageName)
         people.append(person)
+        savaData()
         collectionView.reloadData()
         dismiss(animated: true) // dismiss the picker.
     }
