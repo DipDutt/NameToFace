@@ -18,6 +18,7 @@ class ViewController: UICollectionViewController {
         super.viewDidLoad()
         navigationItem.title = "Name To Face"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
+        loadData()
         
     }
 }
@@ -70,7 +71,6 @@ extension ViewController:UIImagePickerControllerDelegate & UINavigationControlle
     }
     
     // MARK: - Crete imagePicker Controll method for seleted Image
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else { return } // try to get the edited image.
         let imageName = UUID().uuidString // try create unique id for each image so
